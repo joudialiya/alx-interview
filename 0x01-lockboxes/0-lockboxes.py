@@ -6,12 +6,12 @@ LockedBoxes
 
 def canUnlockAll(boxes):
     """ the solution function """
-    queue = set([0])
+    queue = [0]
     visited = set()
     while (len(queue) > 0):
-        box = queue.pop()
+        box = queue.pop(0)
         if box not in visited:
             visited.add(box)
-        for keyTo in boxes[box]:
-            queue.add(keyTo)
+            for keyTo in boxes[box]:
+                queue.append(keyTo)
     return len(visited) == len(boxes)
