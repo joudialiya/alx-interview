@@ -7,7 +7,7 @@ LockedBoxes
 def canUnlockAll(boxes):
     """ the solution function """
     if boxes is None or len(boxes) == 0:
-        return False
+        return True
     queue = [0]
     visited = set()
     while len(queue) > 0:
