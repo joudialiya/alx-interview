@@ -10,11 +10,12 @@ def canUnlockAll(boxes):
         return False
     queue = [0]
     visited = set()
+    visited.add(0)
     while len(queue) > 0:
-        box = queue.pop(0)
-        if box not in visited:
-            visited.add(box)
-            for key in boxes[box]:
-                if key < len(boxes):
-                    queue.append(key)
+        box = queue.pop()
+
+        for key in boxes[box]:
+            if key < len(boxes) and key not in visited:
+                visited.add(box)
+                queue.append(key)
     return len(visited) == len(boxes)
