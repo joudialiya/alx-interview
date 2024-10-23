@@ -38,5 +38,5 @@ if __name__ == "__main__":
 
                 if line_counter % 10 == 0:
                     output(status_dict, file_size)
-    except KeyboardInterrupt as _:
+    finally:
         output(status_dict, file_size)
