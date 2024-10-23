@@ -1,32 +1,32 @@
 #!/usr/bin/python3
 """Log parsing module"""
+
 import re
 import sys
 
-status_dict = {}
-line_counter = 0
-totale_size = 0
 
-
-def output(*args):
+def output(status_dict, file_size):
     """Output the metric"""
-    print("File size: {}".format(totale_size))
+    print("File size: {}".format(file_size))
     for (key, value) in sorted(status_dict.items(), key=lambda item: item[0]):
         print("{}: {}".format(key, value))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     codes = [200, 301, 400, 401, 403, 404, 405, 500]
+    line_counter = 0
+    status_dict = {}
+    file_size = 0
     try:
         for line in sys.stdin:
             pattern = re.compile(
                 r"(?:\d{1,3}\.){3}\d{1,3} - \[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d+\] \"GET /projects/260 HTTP/1.1\" (.{3}) (\d+)"  # nopep8
             )
             line = line.strip()
-            match = re.fullmatch(pattern, line)
+            match = pattern.fullmatch(line)
             if match:
-                status, size = match.groups()[0], match.groups()[1]
-                totale_size += int(size)
+                status, size = match.group(1), match.group(2)
+                file_size += int(size)
                 line_counter += 1
 
                 if status.isdecimal() and int(status) in codes:
@@ -37,6 +37,6 @@ if __name__ == '__main__':
                         status_dict[status] = 1
 
                 if line_counter % 10 == 0:
-                    output()
+                    output(status_dict, file_size)
     except KeyboardInterrupt:
-        output()
+        output(status_dict, file_size)
