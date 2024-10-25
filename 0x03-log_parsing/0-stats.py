@@ -25,7 +25,6 @@ if __name__ == "__main__":
             line = line.strip()
             match = pattern.fullmatch(line)
             if match:
-                print(match)
                 status, size = match.group(1), match.group(2)
                 file_size += int(size)
                 line_counter += 1
