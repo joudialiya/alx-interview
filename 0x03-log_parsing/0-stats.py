@@ -20,11 +20,12 @@ if __name__ == "__main__":
     try:
         for line in sys.stdin:
             pattern = re.compile(
-                r"(?:\d{1,3}\.){3}\d{1,3} - \[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d+\] \"GET /projects/260 HTTP/1.1\" (.{3}) (\d+)"  # nopep8
+                r".+ ?- ?\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d+\] \"GET /projects/260 HTTP/1.1\" (.*) (\d+)"  # nopep8
             )
             line = line.strip()
             match = pattern.fullmatch(line)
             if match:
+                print(match)
                 status, size = match.group(1), match.group(2)
                 file_size += int(size)
                 line_counter += 1
