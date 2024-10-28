@@ -10,6 +10,7 @@ def validUTF8(data):
     char_bytes_count = 0
     char_byte_index = 0
     for char in data:
+        print(char, state)
         if state == NEW_CHAR:
             if (char & 0x80) == 0:
                 char_bytes_count = 1
@@ -32,7 +33,7 @@ def validUTF8(data):
             else:
                 # for the multi byte chars each char should be
                 # a continuation byte
-                if char_byte_index < char_bytes_count:
+                if char_byte_index < char_bytes_count - 1:
                     # check for the continuation byte
                     if (char & 0b11000000) != 0b10000000:
                         return False
