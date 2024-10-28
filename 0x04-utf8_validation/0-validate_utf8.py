@@ -10,7 +10,6 @@ def validUTF8(data):
     char_bytes_count = 0
     char_byte_index = 0
     for char in data:
-        print(char, state)
         if state == NEW_CHAR:
             if (char & 0x80) == 0:
                 char_bytes_count = 1
