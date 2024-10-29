@@ -3,7 +3,8 @@
 
 
 def validUTF8(data):
-    """The check function"""
+    """The check UTF8 function,
+    it could serve as a start for a parser"""
     NEW_CHAR = 0
     FEACHING_CHAR = 1
     state = NEW_CHAR
@@ -39,4 +40,7 @@ def validUTF8(data):
                     char_byte_index += 1
                 else:
                     state = NEW_CHAR
+    if char_bytes_count != char_byte_index:
+        # the string ends before the end of a multi byte char
+        return False
     return True
