@@ -2,10 +2,8 @@
 """
 Rotate 2D Matrix
 """
-from typing import List
 
-
-def rotate_2d_matrix(matrix: List[List[int]]) -> None:
+def rotate_2d_matrix(matrix):
     """Rotate a matrix using geometry"""
     rotated = []
     n = len(matrix)
