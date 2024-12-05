@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 """Island perimeter"""
-from typing import List
 
 
-def island_perimeter(grid: List[List]):
+def island_perimeter(grid):
     """calculate island perimetre"""
     perimeter = 0
     h = len(grid)
