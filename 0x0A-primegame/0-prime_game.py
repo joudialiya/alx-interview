@@ -21,7 +21,7 @@ def isWinner(x, nums):
     MWinsCount = 0
     BWinsCount = 0
     for round in range(0, x):
-        primes = primesTo(nums[round])
+        primes = primesTo(nums[round % len(nums)])
         if len(primes) % 2 == 0:
             BWinsCount += 1
         else:
